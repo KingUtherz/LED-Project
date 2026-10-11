@@ -1,11 +1,10 @@
-<p>โค้ดที่วางมามีอักขระ HTML Entity ปนอยู่ เช่น <code>&#x26;#x3C;</code> แทน <code>&#x3C;</code> และ <code>&#x26;#x26;</code> แทน <code>&#x26;</code> ถ้าบันทึกเป็น <code>.html</code> ตรงๆ หน้าเว็บจะแสดงเป็นข้อความโค้ดดิบ และสคริปต์จะทำงานไม่ได้ ผมแปลงกลับเป็นโค้ดปกติให้แล้ว คัดลอกไปบันทึกเป็น <code>index.html</code> ได้เลยครับ</p>
-<pre><code class="language-html">&#x3C;!DOCTYPE html>
-&#x3C;html lang="th">
-&#x3C;head>
-&#x3C;meta charset="UTF-8">
-&#x3C;meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-&#x3C;title>LED Banner Prototype&#x3C;/title>
-&#x3C;style>
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LED Banner Prototype</title>
+<style>
   :root {
     --ui-bg: #0a0c0f;
     --ui-card: #14181d;
@@ -366,84 +365,84 @@
   @media (prefers-reduced-motion: reduce) {
     .btn, .icon-btn, .knob, .knob::after { transition: none; }
   }
-&#x3C;/style>
-&#x3C;/head>
-&#x3C;body>
-&#x3C;div class="app" id="app">
+</style>
+</head>
+<body>
+<div class="app" id="app">
 
-  &#x3C;!-- ===== Display Screen ===== -->
-  &#x3C;section class="display-wrap" aria-label="หน้าจอป้ายไฟ LED">
-    &#x3C;div class="display mode-scroll dots glow" id="display">
-      &#x3C;div class="marquee">&#x3C;div class="track" id="track">&#x3C;/div>&#x3C;/div>
-      &#x3C;div class="static">&#x3C;span class="static-inner" id="staticInner">&#x3C;/span>&#x3C;/div>
-      &#x3C;div class="led-mask">&#x3C;/div>
-    &#x3C;/div>
-    &#x3C;div class="overlay-btns">
-      &#x3C;button class="icon-btn" id="pauseBtn" type="button" aria-label="หยุด/เล่นการเลื่อน" title="หยุด/เล่น">⏸&#x3C;/button>
-      &#x3C;button class="icon-btn" id="immersiveBtn" type="button" aria-label="สลับโหมดเต็มจอ" title="เต็มจอ">⛶&#x3C;/button>
-    &#x3C;/div>
-  &#x3C;/section>
+  <!-- ===== Display Screen ===== -->
+  <section class="display-wrap" aria-label="หน้าจอป้ายไฟ LED">
+    <div class="display mode-scroll dots glow" id="display">
+      <div class="marquee"><div class="track" id="track"></div></div>
+      <div class="static"><span class="static-inner" id="staticInner"></span></div>
+      <div class="led-mask"></div>
+    </div>
+    <div class="overlay-btns">
+      <button class="icon-btn" id="pauseBtn" type="button" aria-label="หยุด/เล่นการเลื่อน" title="หยุด/เล่น">⏸</button>
+      <button class="icon-btn" id="immersiveBtn" type="button" aria-label="สลับโหมดเต็มจอ" title="เต็มจอ">⛶</button>
+    </div>
+  </section>
 
-  &#x3C;!-- ===== Control Panel ===== -->
-  &#x3C;aside class="panel" aria-label="แผงควบคุม">
-    &#x3C;h1 class="panel-title">&#x3C;i>&#x3C;/i>LED BANNER&#x3C;/h1>
+  <!-- ===== Control Panel ===== -->
+  <aside class="panel" aria-label="แผงควบคุม">
+    <h1 class="panel-title"><i></i>LED BANNER</h1>
 
-    &#x3C;div class="field">
-      &#x3C;label for="textInput">ข้อความ&#x3C;/label>
-      &#x3C;div class="text-row">
-        &#x3C;input type="text" id="textInput" maxlength="200" placeholder="พิมพ์ข้อความของคุณ..." autocomplete="off">
-        &#x3C;button class="btn" id="clearBtn" type="button" aria-label="ล้างข้อความ">ล้าง&#x3C;/button>
-      &#x3C;/div>
-    &#x3C;/div>
+    <div class="field">
+      <label for="textInput">ข้อความ</label>
+      <div class="text-row">
+        <input type="text" id="textInput" maxlength="200" placeholder="พิมพ์ข้อความของคุณ..." autocomplete="off">
+        <button class="btn" id="clearBtn" type="button" aria-label="ล้างข้อความ">ล้าง</button>
+      </div>
+    </div>
 
-    &#x3C;div class="field">
-      &#x3C;span class="label">โหมดการแสดงผล&#x3C;/span>
-      &#x3C;div class="seg" id="modeSeg" role="group" aria-label="โหมดการแสดงผล">
-        &#x3C;button class="btn" type="button" data-value="scroll" aria-pressed="true">เลื่อน&#x3C;/button>
-        &#x3C;button class="btn" type="button" data-value="static" aria-pressed="false">หยุดนิ่ง&#x3C;/button>
-        &#x3C;button class="btn" type="button" data-value="blink" aria-pressed="false">กะพริบ&#x3C;/button>
-      &#x3C;/div>
-    &#x3C;/div>
+    <div class="field">
+      <span class="label">โหมดการแสดงผล</span>
+      <div class="seg" id="modeSeg" role="group" aria-label="โหมดการแสดงผล">
+        <button class="btn" type="button" data-value="scroll" aria-pressed="true">เลื่อน</button>
+        <button class="btn" type="button" data-value="static" aria-pressed="false">หยุดนิ่ง</button>
+        <button class="btn" type="button" data-value="blink" aria-pressed="false">กะพริบ</button>
+      </div>
+    </div>
 
-    &#x3C;div class="field">
-      &#x3C;span class="label">ทิศทางการเลื่อน&#x3C;/span>
-      &#x3C;div class="seg" id="dirSeg" role="group" aria-label="ทิศทางการเลื่อน">
-        &#x3C;button class="btn" type="button" data-value="left" aria-pressed="true">← ซ้าย&#x3C;/button>
-        &#x3C;button class="btn" type="button" data-value="right" aria-pressed="false">ขวา →&#x3C;/button>
-      &#x3C;/div>
-    &#x3C;/div>
+    <div class="field">
+      <span class="label">ทิศทางการเลื่อน</span>
+      <div class="seg" id="dirSeg" role="group" aria-label="ทิศทางการเลื่อน">
+        <button class="btn" type="button" data-value="left" aria-pressed="true">← ซ้าย</button>
+        <button class="btn" type="button" data-value="right" aria-pressed="false">ขวา →</button>
+      </div>
+    </div>
 
-    &#x3C;div class="field">
-      &#x3C;label for="speedRange">ความเร็ว &#x3C;output id="speedOut">160&#x3C;/output>&#x3C;/label>
-      &#x3C;input type="range" id="speedRange" min="20" max="800" step="10" value="160">
-    &#x3C;/div>
+    <div class="field">
+      <label for="speedRange">ความเร็ว <output id="speedOut">160</output></label>
+      <input type="range" id="speedRange" min="20" max="800" step="10" value="160">
+    </div>
 
-    &#x3C;div class="field">
-      &#x3C;label for="sizeRange">ขนาดตัวอักษร &#x3C;output id="sizeOut">60%&#x3C;/output>&#x3C;/label>
-      &#x3C;input type="range" id="sizeRange" min="20" max="95" step="1" value="60">
-    &#x3C;/div>
+    <div class="field">
+      <label for="sizeRange">ขนาดตัวอักษร <output id="sizeOut">60%</output></label>
+      <input type="range" id="sizeRange" min="20" max="95" step="1" value="60">
+    </div>
 
-    &#x3C;div class="field">
-      &#x3C;span class="label">สี&#x3C;/span>
-      &#x3C;div class="color-grid">
-        &#x3C;label class="color-box">&#x3C;input type="color" id="fgColor" value="#39ff14" aria-label="สีตัวอักษร">ตัวอักษร&#x3C;/label>
-        &#x3C;label class="color-box">&#x3C;input type="color" id="bgColor" value="#000000" aria-label="สีพื้นหลัง">พื้นหลัง&#x3C;/label>
-      &#x3C;/div>
-    &#x3C;/div>
+    <div class="field">
+      <span class="label">สี</span>
+      <div class="color-grid">
+        <label class="color-box"><input type="color" id="fgColor" value="#39ff14" aria-label="สีตัวอักษร">ตัวอักษร</label>
+        <label class="color-box"><input type="color" id="bgColor" value="#000000" aria-label="สีพื้นหลัง">พื้นหลัง</label>
+      </div>
+    </div>
 
-    &#x3C;div class="field">
-      &#x3C;span class="label">ชุดสีสำเร็จรูป&#x3C;/span>
-      &#x3C;div class="swatches" id="swatches">&#x3C;/div>
-    &#x3C;/div>
+    <div class="field">
+      <span class="label">ชุดสีสำเร็จรูป</span>
+      <div class="swatches" id="swatches"></div>
+    </div>
 
-    &#x3C;div class="toggles">
-      &#x3C;button class="toggle" id="dotsToggle" type="button" aria-pressed="true">จุด LED &#x3C;span class="knob">&#x3C;/span>&#x3C;/button>
-      &#x3C;button class="toggle" id="glowToggle" type="button" aria-pressed="true">เรืองแสง &#x3C;span class="knob">&#x3C;/span>&#x3C;/button>
-    &#x3C;/div>
-  &#x3C;/aside>
-&#x3C;/div>
+    <div class="toggles">
+      <button class="toggle" id="dotsToggle" type="button" aria-pressed="true">จุด LED <span class="knob"></span></button>
+      <button class="toggle" id="glowToggle" type="button" aria-pressed="true">เรืองแสง <span class="knob"></span></button>
+    </div>
+  </aside>
+</div>
 
-&#x3C;script>
+<script>
 (function () {
   'use strict';
 
@@ -529,7 +528,7 @@
 
     var itemW = Math.max(1, item.getBoundingClientRect().width);
     var copies = Math.max(1, Math.ceil(display.clientWidth / itemW));
-    for (var i = 1; i &#x3C; copies; i++) {
+    for (var i = 1; i < copies; i++) {
       var c = item.cloneNode(true);
       group.appendChild(c);
     }
@@ -550,7 +549,7 @@
     var fs = parseFloat(getComputedStyle(staticInner).fontSize) || 40;
     var maxH = display.clientHeight * 0.96;
     var guard = 0;
-    while (staticInner.offsetHeight > maxH &#x26;&#x26; fs > 10 &#x26;&#x26; guard &#x3C; 40) {
+    while (staticInner.offsetHeight > maxH && fs > 10 && guard < 40) {
       fs *= 0.92;
       staticInner.style.fontSize = fs.toFixed(1) + 'px';
       guard++;
@@ -575,7 +574,7 @@
     var dt = Math.min((ts - lastTs) / 1000, 0.1);
     lastTs = ts;
 
-    if (state.mode === 'scroll' &#x26;&#x26; !state.paused &#x26;&#x26; groupW > 0) {
+    if (state.mode === 'scroll' && !state.paused && groupW > 0) {
       var sign = state.dir === 'left' ? 1 : -1;
       offsetX += sign * state.speed * dt;
       offsetX = ((offsetX % groupW) + groupW) % groupW;
@@ -636,7 +635,7 @@
     textInput.focus();
   });
 
-  /* Mode &#x26; direction */
+  /* Mode & direction */
   bindSegment($('modeSeg'), 'mode', function () {
     updateDirState();
     rebuild();
@@ -644,7 +643,7 @@
   bindSegment($('dirSeg'), 'dir', function () { /* handled live by the loop */ });
   updateDirState();
 
-  /* Speed &#x26; size */
+  /* Speed & size */
   speedRange.addEventListener('input', function () {
     state.speed = Number(speedRange.value);
     speedOut.textContent = state.speed;
@@ -691,17 +690,17 @@
     app.classList.toggle('immersive', on);
     immersiveBtn.textContent = on ? '✕' : '⛶';
     try {
-      if (on &#x26;&#x26; document.fullscreenEnabled &#x26;&#x26; !document.fullscreenElement) {
+      if (on && document.fullscreenEnabled && !document.fullscreenElement) {
         var p = document.documentElement.requestFullscreen();
-        if (p &#x26;&#x26; p.catch) p.catch(function () { /* not permitted in sandbox: CSS mode still works */ });
-      } else if (!on &#x26;&#x26; document.fullscreenElement) {
+        if (p && p.catch) p.catch(function () { /* not permitted in sandbox: CSS mode still works */ });
+      } else if (!on && document.fullscreenElement) {
         document.exitFullscreen();
       }
     } catch (e) { /* ignore */ }
   }
   immersiveBtn.addEventListener('click', function () { setImmersive(!state.immersive); });
   document.addEventListener('fullscreenchange', function () {
-    if (!document.fullscreenElement &#x26;&#x26; state.immersive) setImmersive(false);
+    if (!document.fullscreenElement && state.immersive) setImmersive(false);
   });
 
   /* ---------- Resize / orientation handling ---------- */
@@ -726,17 +725,10 @@
   requestAnimationFrame(frame);
 
   // Re-measure after fonts are ready so widths are accurate
-  if (document.fonts &#x26;&#x26; document.fonts.ready) {
+  if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(rebuild).catch(function () {});
   }
 })();
-&#x3C;/script>
-&#x3C;/body>
-&#x3C;/html>
-</code></pre>
-<p><strong>วิธีหลีกเลี่ยงปัญหานี้ในครั้งต่อไป</strong></p>
-<ul>
-<li>คัดลอกโค้ดจากบล็อกโค้ดโดยตรง (ปุ่ม Copy) อย่าคัดลอกจากหน้า "ดูซอร์ส" หรือหน้าที่ถูกแปลงเป็น HTML อีกชั้น</li>
-<li>ถ้าเห็น <code>&#x26;#x3C;</code>, <code>&#x26;lt;</code> หรือ <code>&#x26;amp;</code> ในโค้ด แปลว่าถูก escape มา ให้แปลงกลับเป็น <code>&#x3C;</code> และ <code>&#x26;</code> ก่อนใช้งาน</li>
-</ul>
-<p>ถ้าต้องการให้ช่วยต่อยอด เช่น ทำเป็น PWA ติดตั้งลงหน้าจอโฮม หรือเพิ่มเอฟเฟกต์ข้อความ บอกได้เลยครับ</p>
+</script>
+</body>
+</html>
